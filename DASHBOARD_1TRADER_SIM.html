@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Trader - Dashboard Principal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .sidebar { background-color: #1e293b; width: 260px; height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid #334155; }
+        .main-content { margin-left: 260px; padding: 2rem; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 1.5rem; }
+        .chart-placeholder { background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 100%); border-bottom: 2px solid #3b82f6; height: 200px; position: relative; }
+        .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Simulada (Matx Style) -->
+    <div class="sidebar flex flex-col">
+        <div class="p-6 border-bottom border-slate-700">
+            <h1 class="text-2xl font-bold text-blue-500"><i class="fas fa-chart-line mr-2"></i>1Trader</h1>
+        </div>
+        <nav class="flex-1 px-4 mt-4">
+            <a href="#" class="flex items-center p-3 text-white bg-blue-600 rounded-lg mb-2"><i class="fas fa-th-large mr-3 w-5"></i>Dashboard</a>
+            <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg mb-2"><i class="fas fa-wallet mr-3 w-5"></i>Billetera</a>
+            <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg mb-2"><i class="fas fa-exchange-alt mr-3 w-5"></i>Operaciones</a>
+            <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg mb-2"><i class="fas fa-history mr-3 w-5"></i>Historial</a>
+            <div class="mt-8 border-t border-slate-700 pt-4">
+                <a href="#" class="flex items-center p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg mb-2"><i class="fas fa-user-cog mr-3 w-5"></i>Ajustes</a>
+                <a href="#" class="flex items-center p-3 text-red-400 hover:bg-red-900/20 rounded-lg"><i class="fas fa-sign-out-alt mr-3 w-5"></i>Cerrar Sesión</a>
+            </div>
+        </nav>
+        <div class="p-4 bg-slate-800/50 m-4 rounded-xl border border-slate-700">
+            <p class="text-xs text-slate-400">CUENTA PRO</p>
+            <p class="text-sm font-bold mt-1">Nivel: Platino</p>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-2xl font-bold">¡Bienvenido de nuevo, Victor!</h2>
+                <p class="text-slate-400 text-sm">Aquí tienes un resumen de tu portafolio hoy.</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <p class="text-xs text-slate-400">FECHA ACTUAL</p>
+                    <p class="text-sm font-semibold" id="current-date"></p>
+                </div>
+                <img src="https://ui-avatars.com/api/?name=Victor+I&background=3b82f6&color=fff" class="w-10 h-10 rounded-full border-2 border-blue-500" alt="Avatar">
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="card flex items-center justify-between">
+                <div>
+                    <p class="text-slate-400 text-sm">Balance Total</p>
+                    <h3 class="text-2xl font-bold mt-1 text-green-400">$42,850.20</h3>
+                    <p class="text-xs text-green-500 mt-2"><i class="fas fa-caret-up mr-1"></i>+12.5% este mes</p>
+                </div>
+                <div class="bg-blue-500/10 p-3 rounded-lg text-blue-500"><i class="fas fa-dollar-sign text-xl"></i></div>
+            </div>
+            <div class="card flex items-center justify-between">
+                <div>
+                    <p class="text-slate-400 text-sm">Inversión Activa</p>
+                    <h3 class="text-2xl font-bold mt-1">$28,120.00</h3>
+                    <p class="text-xs text-slate-400 mt-2">65.6% del total</p>
+                </div>
+                <div class="bg-purple-500/10 p-3 rounded-lg text-purple-500"><i class="fas fa-briefcase text-xl"></i></div>
+            </div>
+            <div class="card flex items-center justify-between">
+                <div>
+                    <p class="text-slate-400 text-sm">Activos Totales</p>
+                    <h3 class="text-2xl font-bold mt-1">12 Activos</h3>
+                    <p class="text-xs text-blue-400 mt-2">3 nuevos añadidos</p>
+                </div>
+                <div class="bg-orange-500/10 p-3 rounded-lg text-orange-500"><i class="fas fa-coins text-xl"></i></div>
+            </div>
+            <div class="card flex items-center justify-between">
+                <div>
+                    <p class="text-slate-400 text-sm">Ganancia Diaria</p>
+                    <h3 class="text-2xl font-bold mt-1 text-green-400">+$340.15</h3>
+                    <p class="text-xs text-green-500 mt-2">Pico: 14:00 PM</p>
+                </div>
+                <div class="bg-green-500/10 p-3 rounded-lg text-green-500"><i class="fas fa-chart-line text-xl"></i></div>
+            </div>
+        </div>
+
+        <!-- Charts and Assets -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Gráfico (Simulando Echarts) -->
+            <div class="card lg:col-span-2">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-bold">Rendimiento del Portafolio</h3>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 bg-slate-700 text-xs rounded hover:bg-blue-600 transition">1D</button>
+                        <button class="px-3 py-1 bg-blue-600 text-xs rounded">1W</button>
+                        <button class="px-3 py-1 bg-slate-700 text-xs rounded hover:bg-blue-600 transition">1M</button>
+                    </div>
+                </div>
+                <div class="chart-placeholder flex items-end justify-between px-4 pb-2">
+                    <div class="w-8 bg-blue-500/40 rounded-t h-[40%]"></div>
+                    <div class="w-8 bg-blue-500/50 rounded-t h-[60%]"></div>
+                    <div class="w-8 bg-blue-500/30 rounded-t h-[45%]"></div>
+                    <div class="w-8 bg-blue-500/70 rounded-t h-[80%]"></div>
+                    <div class="w-8 bg-blue-600 rounded-t h-[95%]"></div>
+                    <div class="w-8 bg-blue-500/60 rounded-t h-[70%]"></div>
+                    <div class="w-8 bg-blue-500/80 rounded-t h-[85%] pulse"></div>
+                </div>
+                <div class="flex justify-between mt-4 text-xs text-slate-500">
+                    <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                </div>
+            </div>
+
+            <!-- Lista de Activos -->
+            <div class="card">
+                <h3 class="text-lg font-bold mb-6">Activos Top</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="bg-orange-500 p-2 rounded-full mr-3"><i class="fab fa-bitcoin text-white"></i></div>
+                            <div>
+                                <p class="text-sm font-bold">Bitcoin</p>
+                                <p class="text-xs text-slate-400">BTC</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-bold">$64,230</p>
+                            <p class="text-xs text-green-400">+2.4%</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="bg-blue-400 p-2 rounded-full mr-3"><i class="fab fa-ethereum text-white"></i></div>
+                            <div>
+                                <p class="text-sm font-bold">Ethereum</p>
+                                <p class="text-xs text-slate-400">ETH</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-bold">$3,410</p>
+                            <p class="text-xs text-red-400">-1.1%</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="bg-green-500 p-2 rounded-full mr-3"><i class="fas fa-dollar-sign text-white"></i></div>
+                            <div>
+                                <p class="text-sm font-bold">Tether</p>
+                                <p class="text-xs text-slate-400">USDT</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm font-bold">$1.00</p>
+                            <p class="text-xs text-slate-400">0.0%</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full mt-6 py-2 text-sm text-blue-400 hover:text-blue-300 transition">Ver todos los activos <i class="fas fa-chevron-right ml-1"></i></button>
+            </div>
+        </div>
+
+        <!-- Tabla de Transacciones -->
+        <div class="card mt-8">
+            <h3 class="text-lg font-bold mb-6">Últimas Transacciones</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="text-slate-400 border-b border-slate-700 pb-2">
+                            <th class="py-3 px-4 font-normal">Operación</th>
+                            <th class="py-3 px-4 font-normal">Activo</th>
+                            <th class="py-3 px-4 font-normal">Monto</th>
+                            <th class="py-3 px-4 font-normal">Estado</th>
+                            <th class="py-3 px-4 font-normal">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700">
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-4 px-4 font-bold text-blue-400">COMPRA</td>
+                            <td class="py-4 px-4 flex items-center">
+                                <span class="bg-orange-500/20 text-orange-500 text-[10px] p-1 rounded-full mr-2">BTC</span> Bitcoin
+                            </td>
+                            <td class="py-4 px-4 font-bold">0.05 BTC</td>
+                            <td class="py-4 px-4"><span class="bg-green-900/40 text-green-400 px-2 py-1 rounded text-xs">COMPLETADO</span></td>
+                            <td class="py-4 px-4 text-slate-400">Hoy, 14:20 PM</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-4 px-4 font-bold text-red-400">VENTA</td>
+                            <td class="py-4 px-4 flex items-center">
+                                <span class="bg-blue-400/20 text-blue-400 text-[10px] p-1 rounded-full mr-2">ETH</span> Ethereum
+                            </td>
+                            <td class="py-4 px-4 font-bold">1.20 ETH</td>
+                            <td class="py-4 px-4"><span class="bg-green-900/40 text-green-400 px-2 py-1 rounded text-xs">COMPLETADO</span></td>
+                            <td class="py-4 px-4 text-slate-400">Ayer, 09:45 AM</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-4 px-4 font-bold text-blue-400">DEPÓSITO</td>
+                            <td class="py-4 px-4 flex items-center">
+                                <span class="bg-slate-400/20 text-slate-400 text-[10px] p-1 rounded-full mr-2">USD</span> Dólar
+                            </td>
+                            <td class="py-4 px-4 font-bold">$1,500.00</td>
+                            <td class="py-4 px-4"><span class="bg-yellow-900/40 text-yellow-400 px-2 py-1 rounded text-xs">PENDIENTE</span></td>
+                            <td class="py-4 px-4 text-slate-400">24 Mar, 11:30 AM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Fecha actual dinâmica
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        });
+    </script>
+</body>
+</html>

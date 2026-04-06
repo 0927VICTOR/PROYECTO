@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Trader - Flujo de Transacción Paso a Paso</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --accent: #10b981;
+            --warning: #f59e0b;
+        }
+        body {
+            margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px;
+        }
+        .container { max-width: 900px; width: 100%; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        .stepper {
+            display: flex; justify-content: space-between; margin-bottom: 40px; position: relative;
+        }
+        .stepper::before {
+            content: ''; position: absolute; top: 20px; left: 0; width: 100%; height: 2px; background: #334155; z-index: -1;
+        }
+        .step-circle {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 2px solid #334155;
+            display: flex; align-items: center; justify-content: center; font-weight: bold; transition: 0.3s;
+        }
+        .step-circle.active { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 15px var(--primary); }
+        .step-circle.completed { background: var(--accent); border-color: var(--accent); }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; height: 400px; overflow-y: auto; }
+        .card h3 { margin-top: 0; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        
+        .code-block {
+            background: #000; padding: 15px; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.85rem;
+            color: #d1d5db; border-left: 4px solid var(--primary); margin-top: 10px;
+        }
+        .highlight { color: var(--accent); }
+        .warning { color: var(--warning); }
+        
+        .controls { margin-top: 30px; display: flex; gap: 20px; justify-content: center; }
+        button {
+            padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-prev { background: #475569; color: white; }
+        .btn-next { background: var(--primary); color: white; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .viz-box {
+            border: 1px dashed #475569; padding: 10px; margin-top: 10px; border-radius: 6px; text-align: center;
+        }
+        .db-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; }
+        .db-table th, .db-table td { border: 1px solid #334155; padding: 5px; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Simulador de Transacción 1Trader</h1>
+            <p>Visualizando la compra de <strong>0.1 BTC</strong> paso a paso</p>
+        </header>
+
+        <div class="stepper" id="stepper">
+            <div class="step-circle active" data-step="1">1</div>
+            <div class="step-circle" data-step="2">2</div>
+            <div class="step-circle" data-step="3">3</div>
+            <div class="step-circle" data-step="4">4</div>
+            <div class="step-circle" data-step="5">5</div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Columna Izquierda: Lo que ve el Usuario / Frontend -->
+            <div class="card" id="frontend-card">
+                <h3 id="fe-title">🖥️ Vista del Usuario</h3>
+                <div id="fe-content">
+                    <p>El usuario está en el Dashboard y decide comprar Bitcoin.</p>
+                    <div class="viz-box" style="background: #1e293b; padding: 20px;">
+                        <div style="font-size: 0.8rem; color: #94a3b8;">ACTIVO: BTC/USD</div>
+                        <div style="font-size: 1.5rem; font-weight: bold;">$65,430.00</div>
+                        <input type="number" value="0.1" style="width: 80%; margin: 10px 0; padding: 5px; background: #0f172a; color: white; border: 1px solid #3b82f6;">
+                        <button style="background: #3b82f6; width: 100%; padding: 10px; color: white; border: none; border-radius: 4px;">COMPRAR AHORA</button>
+                    </div>
+                    <div class="code-block">
+                        // src/app/views/dashboard/AssetDetails.jsx<br>
+                        const handleBuy = () => {<br>
+                        &nbsp;&nbsp;dispatch(buyAsset({ id: 'BTC', amount: 0.1 }));<br>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Lo que hace el Backend / Base de Datos -->
+            <div class="card" id="backend-card">
+                <h3 id="be-title">⚙️ Backend & Base de Datos</h3>
+                <div id="be-content">
+                    <p>Esperando acción del usuario...</p>
+                    <div class="code-block" style="border-left-color: #475569;">
+                        // Servidor en escucha...<br>
+                        POST /api/v1/transactions/buy HTTP/1.1
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-prev" id="btn-prev" disabled onclick="changeStep(-1)">Anterior</button>
+            <button class="btn-next" id="btn-next" onclick="changeStep(1)">Siguiente Paso</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        const stepsData = {
+            1: {
+                feTitle: "🖥️ Vista del Usuario",
+                feContent: `<p>El usuario pulsa el botón 'Comprar'. El Frontend de React valida que el campo no esté vacío y lanza una acción de Redux.</p>
+                            <div class="viz-box">Estado: Botón presionado.</div>
+                            <div class="code-block">
+                                // dispatch(buyAsset({ symbol: 'BTC', qty: 0.1 }));<br>
+                                const response = await axios.post('/buy', data);
+                            </div>`,
+                beTitle: "⚙️ Recepción de Petición",
+                beContent: `<p>El backend recibe la petición POST. Lo primero es validar quién la envía.</p>
+                            <div class="code-block">
+                                // middleware/verfyOauth.js<br>
+                                const token = req.headers['authorization'];<br>
+                                const decoded = jwt.verify(token, SECRET);<br>
+                                <span class="highlight">req.userId = decoded.id;</span>
+                            </div>`
+            },
+            2: {
+                feTitle: "🔄 Estado de Carga",
+                feContent: `<p>El frontend muestra un 'Loading...' y deshabilita el botón para evitar doble clic.</p>
+                            <div class="viz-box" style="display: flex; align-items: center; justify-content: center; height: 100px;">
+                                <div style="border: 4px solid #3b82f6; border-top: 4px solid transparent; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;"></div>
+                            </div>
+                            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>`,
+                beTitle: "🔍 Validación de Saldo",
+                beContent: `<p>El controlador busca la cuenta del usuario para ver si tiene dinero suficiente.</p>
+                            <div class="code-block">
+                                // controllers/accountController.js<br>
+                                const account = await Account.findOne({ where: { userId } });<br>
+                                if (account.balance < totalCost) {<br>
+                                &nbsp;&nbsp;<span class="warning">return res.status(400).send("Saldo insuficiente");</span><br>
+                                }
+                            </div>`
+            },
+            3: {
+                feTitle: "📡 Esperando Respuesta",
+                feContent: `<p>El Frontend mantiene la conexión abierta. El middleware de Socket.io está listo para recibir la confirmación.</p>
+                            <div class="code-block">
+                                socket.on('transaction_update', (data) => {<br>
+                                &nbsp;&nbsp;showNotification(data.message);<br>
+                                });
+                            </div>`,
+                beTitle: "💾 Escritura en Base de Datos",
+                beContent: `<p>Se inicia una <strong>Transacción SQL (ACID)</strong>. Si algo falla aquí, nada se guarda.</p>
+                            <div class="code-block">
+                                const t = await sequelize.transaction();<br>
+                                await Account.update({ balance: newBalance }, { transaction: t });<br>
+                                await Transaction.create({ ... }, { transaction: t });<br>
+                                <span class="highlight">await t.commit();</span>
+                            </div>`
+            },
+            4: {
+                feTitle: "✨ Notificación en Tiempo Real",
+                feContent: `<p>¡El servidor ha terminado! Antes de que la petición HTTP finalice, el socket envía un aviso.</p>
+                            <div class="viz-box" style="background: #065f46; border: 1px solid #10b981;">
+                                ✅ ¡Compra de 0.1 BTC Exitosa!
+                            </div>
+                            <div class="code-block">
+                                // socket/socket.js<br>
+                                io.to(userId).emit('transaction_update', {<br>
+                                &nbsp;&nbsp;status: 'success',<br>
+                                &nbsp;&nbsp;message: 'Operación completada'<br>
+                                });
+                            </div>`,
+                beTitle: "📊 Actualización de Tablas",
+                beContent: `<p>Los registros ahora están actualizados en la base de datos.</p>
+                            <table class="db-table">
+                                <tr><th>Tabla</th><th>Acción</th></tr>
+                                <tr><td>Accounts</td><td>- $6,543.00 (Balance)</td></tr>
+                                <tr><td>Transactions</td><td>+1 Registro 'BUY'</td></tr>
+                                <tr><td>UserActives</td><td>+0.1 BTC</td></tr>
+                            </table>`
+            },
+            5: {
+                feTitle: "🎉 Éxito y Portafolio",
+                feContent: `<p>El Dashboard se actualiza automáticamente. El nuevo balance de BTC aparece en el gráfico de torta.</p>
+                            <div class="viz-box">
+                                <div style="font-size: 0.7rem;">NUEVO BALANCE:</div>
+                                <div style="font-size: 1.2rem; color: #10b981;">0.1000 BTC</div>
+                            </div>`,
+                beTitle: "🏁 Proceso Finalizado",
+                beContent: `<p>El servidor libera la conexión y queda a la espera de la siguiente operación.</p>
+                            <div class="code-block">
+                                res.status(200).json({<br>
+                                &nbsp;&nbsp;ok: true,<br>
+                                &nbsp;&nbsp;data: transactionRecord<br>
+                                });
+                            </div>`
+            }
+        };
+
+        function changeStep(delta) {
+            currentStep += delta;
+            if (currentStep < 1) currentStep = 1;
+            if (currentStep > totalSteps) currentStep = totalSteps;
+
+            updateUI();
+        }
+
+        function updateUI() {
+            // Actualizar Círculos
+            document.querySelectorAll('.step-circle').forEach(el => {
+                const step = parseInt(el.getAttribute('data-step'));
+                el.classList.remove('active', 'completed');
+                if (step === currentStep) el.classList.add('active');
+                if (step < currentStep) el.classList.add('completed');
+            });
+
+            // Actualizar Contenido
+            const data = stepsData[currentStep];
+            document.getElementById('fe-title').innerText = data.feTitle;
+            document.getElementById('fe-content').innerHTML = data.feContent;
+            document.getElementById('be-title').innerText = data.beTitle;
+            document.getElementById('be-content').innerHTML = data.beContent;
+
+            // Actualizar Botones
+            document.getElementById('btn-prev').disabled = (currentStep === 1);
+            document.getElementById('btn-next').innerText = (currentStep === totalSteps) ? "Finalizar" : "Siguiente Paso";
+        }
+    </script>
+</body>
+</html>

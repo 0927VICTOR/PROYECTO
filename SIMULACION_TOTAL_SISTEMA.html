@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Trader - Simulación Total del Ecosistema</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --bg: #0b0f1a;
+            --card: #161b2c;
+            --text: #e2e8f0;
+            --success: #10b981;
+            --info: #3b82f6;
+        }
+        body {
+            margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text);
+            display: flex; height: 100vh; overflow: hidden;
+        }
+        
+        /* Sidebar de Navegación */
+        .sidebar {
+            width: 300px; background: #0f172a; border-right: 1px solid #1e293b;
+            display: flex; flex-direction: column; padding: 20px;
+        }
+        .sidebar h2 { color: var(--primary); font-size: 1.2rem; margin-bottom: 30px; }
+        .nav-item {
+            padding: 12px 15px; border-radius: 8px; cursor: pointer; margin-bottom: 8px;
+            transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
+        }
+        .nav-item:hover { background: rgba(99, 102, 241, 0.1); }
+        .nav-item.active { background: var(--primary); color: white; }
+        .nav-item .icon { font-size: 1.2rem; }
+
+        /* Contenido Principal */
+        .main-content { flex: 1; display: flex; flex-direction: column; padding: 30px; overflow-y: auto; }
+        
+        /* Header del Módulo */
+        .module-header { margin-bottom: 30px; }
+        .module-header h1 { margin: 0; font-size: 1.8rem; }
+        .module-header p { color: #94a3b8; margin-top: 5px; }
+
+        /* Grid de Visualización */
+        .viz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+        .panel { background: var(--card); border-radius: 12px; border: 1px solid #1e293b; padding: 20px; display: flex; flex-direction: column; }
+        .panel h3 { margin-top: 0; font-size: 1rem; color: var(--info); border-bottom: 1px solid #1e293b; padding-bottom: 10px; margin-bottom: 15px; }
+
+        /* Estilos de Código y Simulación */
+        .code-view {
+            background: #000; padding: 15px; border-radius: 6px; font-family: 'Consolas', monospace;
+            font-size: 0.8rem; color: #d1d5db; overflow-x: auto; flex: 1;
+        }
+        .stack-tag {
+            font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; background: #334155; color: #cbd5e1; font-weight: bold;
+        }
+
+        /* Mockups de Interfaz */
+        .mockup {
+            border-radius: 8px; border: 1px solid #334155; background: #0f172a; flex: 1;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+        }
+
+        .btn {
+            background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px;
+            cursor: pointer; font-weight: bold; margin-top: 15px;
+        }
+        
+        /* Animaciones */
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        .pulse { animation: pulse 2s infinite; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>🚀 1Trader Master Sim</h2>
+        <div class="nav-item active" onclick="showModule(1)">
+            <span class="icon">🌐</span> 1. Landing Page (Next.js)
+        </div>
+        <div class="nav-item" onclick="showModule(2)">
+            <span class="icon">🔐</span> 2. Registro y Seguridad
+        </div>
+        <div class="nav-item" onclick="showModule(3)">
+            <span class="icon">🔑</span> 3. Autenticación JWT
+        </div>
+        <div class="nav-item" onclick="showModule(4)">
+            <span class="icon">📊</span> 4. Dashboard (React)
+        </div>
+        <div class="nav-item" onclick="showModule(5)">
+            <span class="icon">⚡</span> 5. Tiempo Real (Sockets)
+        </div>
+        <div class="nav-item" onclick="showModule(6)">
+            <span class="icon">🛡️</span> 6. Panel Admin
+        </div>
+        
+        <div style="margin-top: auto; padding: 15px; background: rgba(236, 72, 153, 0.1); border-radius: 8px; border: 1px solid var(--secondary);">
+            <div style="font-size: 0.8rem; color: var(--secondary); font-weight: bold;">ESTADO DEL ANALIZADOR</div>
+            <div style="font-size: 0.7rem; margin-top: 5px;">Sistema: 100% Operativo<br>Código: Verificado</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div id="module-content">
+            <!-- El contenido se genera dinámicamente -->
+        </div>
+    </div>
+
+    <script>
+        const modules = {
+            1: {
+                title: "Captación de Usuarios (Landing Page)",
+                subtitle: "Tecnología: Next.js + Tailwind CSS",
+                leftTitle: "Vista del Visitante",
+                leftContent: `
+                    <div class="mockup">
+                        <div style="text-align:center; padding: 20px;">
+                            <h2 style="color:var(--primary)">Invierte en el Futuro</h2>
+                            <p style="font-size:0.8rem">La plataforma de trading más avanzada.</p>
+                            <button class="btn" onclick="nextModule()">Comenzar Gratis</button>
+                        </div>
+                    </div>
+                `,
+                rightTitle: "Lógica Frontend (Next.js)",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// app/page.tsx</span><br>
+                        export default function Home() {<br>
+                        &nbsp;&nbsp;return (<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Hero <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title="Invierte..."<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cta="Comenzar"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br>
+                        &nbsp;&nbsp;);<br>
+                        }
+                    </div>
+                `
+            },
+            2: {
+                title: "Registro de Nuevo Usuario",
+                subtitle: "Backend: Node.js / DB: MySQL",
+                leftTitle: "Formulario de Registro",
+                leftContent: `
+                    <div class="mockup">
+                        <div style="width:70%; text-align:left;">
+                            <label style="font-size:0.7rem">Email</label>
+                            <input type="text" value="nuevo@usuario.com" style="width:100%; margin-bottom:10px; background:#0b0f1a; border:1px solid #334155; color:white; padding:5px;">
+                            <label style="font-size:0.7rem">Password</label>
+                            <input type="password" value="********" style="width:100%; margin-bottom:10px; background:#0b0f1a; border:1px solid #334155; color:white; padding:5px;">
+                            <button class="btn" style="width:100%" onclick="nextModule()">Crear Cuenta</button>
+                        </div>
+                    </div>
+                `,
+                rightTitle: "Cifrado y Persistencia",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// services/userService.js</span><br>
+                        const salt = await bcrypt.genSalt(10);<br>
+                        const hashed = await bcrypt.hash(pass, salt);<br><br>
+                        <span style="color:#10b981">// Guardando en DB...</span><br>
+                        await User.create({ email, password: hashed });
+                    </div>
+                `
+            },
+            3: {
+                title: "Autenticación y Seguridad (JWT)",
+                subtitle: "Protegiendo la Sesión",
+                leftTitle: "Proceso de Login",
+                leftContent: `
+                    <div class="mockup">
+                        <div class="pulse" style="color:var(--info)">Verificando Credenciales...</div>
+                        <div style="margin-top:20px; font-size:0.7rem; color:#94a3b8">Token Generado: eyJhbGciOiJIUzI1...</div>
+                    </div>
+                `,
+                rightTitle: "Generación de Token",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// controllers/authController.js</span><br>
+                        const token = jwt.sign(<br>
+                        &nbsp;&nbsp;{ id: user.id, role: user.role },<br>
+                        &nbsp;&nbsp;process.env.JWT_SECRET,<br>
+                        &nbsp;&nbsp;{ expiresIn: '24h' }<br>
+                        );<br>
+                        res.json({ token });
+                    </div>
+                `
+            },
+            4: {
+                title: "Dashboard e Interfaz de Usuario",
+                subtitle: "Frontend: React + Redux + MUI",
+                leftTitle: "Vista del Dashboard",
+                leftContent: `
+                    <div class="mockup">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px; width:100%">
+                            <div style="background:#1e293b; padding:10px; border-radius:4px;">
+                                <div style="font-size:0.6rem">SALDO</div>
+                                <div style="font-size:1rem; color:var(--success)">$12,450.00</div>
+                            </div>
+                            <div style="background:#1e293b; padding:10px; border-radius:4px;">
+                                <div style="font-size:0.6rem">ACTIVOS</div>
+                                <div style="font-size:1rem">4</div>
+                            </div>
+                        </div>
+                        <div style="width:90%; height:80px; background:#1e293b; margin-top:10px; border-radius:4px; border-bottom:2px solid var(--primary)"></div>
+                    </div>
+                `,
+                rightTitle: "Gestión de Estado (Redux)",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// app/redux/slices/accountSlice.js</span><br>
+                        const accountSlice = createSlice({<br>
+                        &nbsp;&nbsp;name: 'account',<br>
+                        &nbsp;&nbsp;initialState,<br>
+                        &nbsp;&nbsp;reducers: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;setBalance: (state, action) => { ... }<br>
+                        &nbsp;&nbsp;}<br>
+                        });
+                    </div>
+                `
+            },
+            5: {
+                title: "Actualizaciones en Tiempo Real",
+                subtitle: "Motor: Socket.io",
+                leftTitle: "Monitor de Precios",
+                leftContent: `
+                    <div class="mockup">
+                        <div style="width:80%">
+                            <div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #334155">
+                                <span>BTC/USD</span>
+                                <span class="pulse" style="color:var(--success)">$65,432.10</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; padding:5px; border-bottom:1px solid #334155">
+                                <span>ETH/USD</span>
+                                <span class="pulse" style="color:var(--success)">$3,450.80</span>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                rightTitle: "Servidor de Sockets",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// socket/socket.js</span><br>
+                        io.on('connection', (socket) => {<br>
+                        &nbsp;&nbsp;setInterval(() => {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;socket.emit('priceUpdate', getPrices());<br>
+                        &nbsp;&nbsp;}, 1000);<br>
+                        });
+                    </div>
+                `
+            },
+            6: {
+                title: "Administración y Control",
+                subtitle: "Gestión Interna del Sistema",
+                leftTitle: "Panel de Control",
+                leftContent: `
+                    <div class="mockup">
+                        <h4 style="font-size:0.8rem">Depósitos Pendientes</h4>
+                        <div style="font-size:0.7rem; width:90%; background:#1e293b; padding:10px; margin-bottom:5px; display:flex; justify-content:space-between">
+                            <span>User: ID_99</span>
+                            <span>$500.00</span>
+                            <span style="color:var(--info); cursor:pointer">[APROBAR]</span>
+                        </div>
+                    </div>
+                `,
+                rightTitle: "Roles y Permisos",
+                rightContent: `
+                    <div class="code-view">
+                        <span style="color:#6366f1">// middleware/verfyOauth.js</span><br>
+                        if (req.user.role !== 'ADMIN') {<br>
+                        &nbsp;&nbsp;return res.status(403).send("Acceso denegado");<br>
+                        }<br>
+                        <span style="color:#10b981">// Procede a la gestión de fondos...</span>
+                    </div>
+                `
+            }
+        };
+
+        function showModule(id) {
+            const mod = modules[id];
+            const container = document.getElementById('module-content');
+            
+            // Actualizar Sidebar
+            document.querySelectorAll('.nav-item').forEach((el, idx) => {
+                el.classList.toggle('active', (idx + 1) === id);
+            });
+
+            container.innerHTML = `
+                <div class="module-header">
+                    <h1>${mod.title}</h1>
+                    <p>${mod.subtitle}</p>
+                </div>
+                <div class="viz-grid">
+                    <div class="panel">
+                        <h3>${mod.leftTitle}</h3>
+                        ${mod.leftContent}
+                    </div>
+                    <div class="panel">
+                        <h3>${mod.rightTitle}</h3>
+                        ${mod.rightContent}
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextModule() {
+            const active = document.querySelector('.nav-item.active');
+            let nextId = 1;
+            document.querySelectorAll('.nav-item').forEach((el, idx) => {
+                if (el === active) nextId = idx + 2;
+            });
+            if (nextId <= Object.keys(modules).length) showModule(nextId);
+        }
+
+        // Cargar primer módulo al inicio
+        showModule(1);
+    </script>
+</body>
+</html>

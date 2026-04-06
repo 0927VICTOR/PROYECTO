@@ -1,0 +1,274 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema gambatte_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema gambatte_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `gambatte_db` DEFAULT CHARACTER SET utf8 ;
+USE `gambatte_db` ;
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`rol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`rol` (
+  `idRol` INT NOT NULL AUTO_INCREMENT,
+  `role` VARCHAR(45) NULL,
+  PRIMARY KEY (`idRol`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`account`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`account` (
+  `idAccount` INT NOT NULL AUTO_INCREMENT,
+  `balance` DOUBLE NULL DEFAULT 0,
+  PRIMARY KEY (`idAccount`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`document_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`document_type` (
+  `idDocument_type` INT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`idDocument_type`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idUser` VARCHAR(8) NULL,
+  `fullName` VARCHAR(45) NULL,
+  `secondName` VARCHAR(45) NULL,
+  `password` VARCHAR(300) NULL,
+  `email` VARCHAR(45) NULL,
+  `phone` VARCHAR(10) NULL,
+  `documentNumber` VARCHAR(45) NULL,
+  `documentType` INT NULL,
+  `status` TINYINT NULL,
+  `statusActive` TINYINT NULL,
+  `avatar` VARCHAR(150) NULL,
+  `rol_idrol` INT NOT NULL,
+  `account_idaccount` INT NOT NULL,
+  `termsAndConditions` TINYINT NULL,
+  `finishRegister` DOUBLE NULL,
+  `documentImagenFront` VARCHAR(45) NULL,
+  `documentImagenPost` VARCHAR(45) NULL,
+  `indicative` VARCHAR(45) NULL,
+  `postalCode` VARCHAR(45) NULL,
+  `hour` VARCHAR(25) NULL,
+  `accountVerify` TINYINT NULL,
+  `description` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_user_login_rol_idx` (`rol_idrol` ) ,
+  INDEX `fk_user_login_account1_idx` (`account_idaccount` ) ,
+  INDEX `fk_user_login_document_type1_idx` (`documentType` ) ,
+  CONSTRAINT `fk_user_login_rol`
+    FOREIGN KEY (`rol_idrol`)
+    REFERENCES `gambatte_db`.`rol` (`idRol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_login_account1`
+    FOREIGN KEY (`account_idaccount`)
+    REFERENCES `gambatte_db`.`account` (`idAccount`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_login_document_type1`
+    FOREIGN KEY (`documentType`)
+    REFERENCES `gambatte_db`.`document_type` (`idDocument_type`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`deposit`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`deposit` (
+  `idDeposit` INT NOT NULL AUTO_INCREMENT,
+  `amount` DOUBLE NULL,
+  `ecommerce` VARCHAR(45) NULL,
+  `depositDate` DATE NULL,
+  `state` INT NULL,
+  `account_idaccount` INT NOT NULL,
+  `idCard` INT NULL,
+  `description` VARCHAR(100) NULL,
+  `hour` VARCHAR(25) NULL,
+  PRIMARY KEY (`idDeposit`),
+  INDEX `fk_deposit_account1_idx` (`account_idaccount` ) ,
+  CONSTRAINT `fk_deposit_account1`
+    FOREIGN KEY (`account_idaccount`)
+    REFERENCES `gambatte_db`.`account` (`idAccount`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`bank`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`bank` (
+  `idBank` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`idBank`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`expenses`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`expenses` (
+  `idExpenses` INT NOT NULL AUTO_INCREMENT,
+  `amount` DOUBLE NULL,
+  `expensesDate` DATE NULL,
+  `state` INT NULL,
+  `keyAccount` VARCHAR(45) NULL,
+  `swiftCode` VARCHAR(45) NULL,
+  `account_idaccount` INT NOT NULL,
+  `bank` INT NOT NULL,
+  `description` VARCHAR(100) NULL,
+  `hour` VARCHAR(25) NULL,
+  PRIMARY KEY (`idExpenses`),
+  INDEX `fk_expenses_account1_idx` (`account_idaccount` ) ,
+  INDEX `fk_expenses_bank1_idx` (`bank` ) ,
+  CONSTRAINT `fk_expenses_account1`
+    FOREIGN KEY (`account_idaccount`)
+    REFERENCES `gambatte_db`.`account` (`idAccount`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_expenses_bank1`
+    FOREIGN KEY (`bank`)
+    REFERENCES `gambatte_db`.`bank` (`idBank`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`buy_services`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`buy_services` (
+  `idBuy_services` INT NOT NULL AUTO_INCREMENT,
+  `nameService` VARCHAR(45) NULL,
+  `amount` DOUBLE NULL,
+  `date` DATE NULL,
+  `status` INT NULL,
+  `user_login_id` INT NOT NULL,
+  `hour` VARCHAR(25) NULL,
+  PRIMARY KEY (`idBuy_services`),
+  INDEX `fk_buy_services_user_login1_idx` (`user_login_id` ) ,
+  CONSTRAINT `fk_buy_services_user_login1`
+    FOREIGN KEY (`user_login_id`)
+    REFERENCES `gambatte_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`transaction`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`transaction` (
+  `idTransaction` INT NOT NULL AUTO_INCREMENT,
+  `date` DATE NULL,
+  `transactionType` VARCHAR(45) NULL,
+  `transactionNumber` VARCHAR(50) NULL,
+  `amount` DOUBLE NULL,
+  `status` INT NULL,
+  `user_login_id` INT NOT NULL,
+  `buy_services_idbuy_services` INT NULL,
+  `hour` VARCHAR(25) NULL,
+  PRIMARY KEY (`idTransaction`),
+  INDEX `fk_transaction_user_login1_idx` (`user_login_id` ) ,
+  INDEX `fk_transaction_buy_services1_idx` (`buy_services_idbuy_services` ) ,
+  CONSTRAINT `fk_transaction_user_login1`
+    FOREIGN KEY (`user_login_id`)
+    REFERENCES `gambatte_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_buy_services1`
+    FOREIGN KEY (`buy_services_idbuy_services`)
+    REFERENCES `gambatte_db`.`buy_services` (`idBuy_services`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`payment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`payment` (
+  `idPayment` INT NOT NULL AUTO_INCREMENT,
+  `investmentValue` DOUBLE NULL,
+  `amount` DOUBLE NULL,
+  `date` DATE NULL,
+  `hour` VARCHAR(25) NULL,
+  `result` DOUBLE NULL,
+  `status` INT NULL,
+  `total` DOUBLE NULL,
+  `account_idAccount` INT NOT NULL,
+  `title` VARCHAR(45) NULL,
+  `price` VARCHAR(100) NULL,
+  `percentage` DOUBLE NULL,
+  `value` DOUBLE NULL,
+  `movement` VARCHAR(45) NULL,
+  PRIMARY KEY (`idPayment`),
+  INDEX `fk_payment_account1_idx` (`account_idAccount` ) ,
+  CONSTRAINT `fk_payment_account1`
+    FOREIGN KEY (`account_idAccount`)
+    REFERENCES `gambatte_db`.`account` (`idAccount`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`card`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`card` (
+  `idCard` INT NOT NULL AUTO_INCREMENT,
+  `user_login_id` INT NOT NULL,
+  `cardNumber` VARCHAR(300) NULL,
+  `cvv` VARCHAR(300) NULL,
+  `expYear` VARCHAR(300) NULL,
+  `month` VARCHAR(300) NULL,
+  `termAndConditions` TINYINT NULL,
+  PRIMARY KEY (`idCard`),
+  INDEX `fk_card_user_login1_idx` (`user_login_id` ) ,
+  CONSTRAINT `fk_card_user_login1`
+    FOREIGN KEY (`user_login_id`)
+    REFERENCES `gambatte_db`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gambatte_db`.`country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gambatte_db`.`country` (
+  `id` INT NOT NULL,
+  `ESPANOL` VARCHAR(100) NULL,
+  `ENGLISH` VARCHAR(100) NULL,
+  `ISO2` VARCHAR(50) NULL,
+  `ISO3` VARCHAR(50) NULL,
+  `PHONE_CODE` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

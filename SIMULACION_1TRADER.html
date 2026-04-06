@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación 1Trader - Entorno Local</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('qa.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; 
+            min-height: 100vh;
+        }
+        
+        /* Navbar Simulada */
+        .simulator-nav {
+            background: #0f172a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .brand { font-weight: bold; font-size: 1.2rem; color: #3b82f6; }
+        .controls button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .controls button:hover { background: #1d4ed8; }
+        .status-dot { height: 10px; width: 10px; background-color: #22c55e; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+        /* Contenedores de Vistas */
+        .view-container {
+            display: none; /* Oculto por defecto */
+            margin-top: 60px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+        .view-container.active { display: block; }
+
+        /* Imágenes Ajustadas */
+        img.mockup {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Overlay de Login Simulado */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .login-box {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            border: 1px solid #334155;
+        }
+        .login-box h2 { margin-top: 0; }
+        .login-input {
+            width: 100%; padding: 10px; margin: 10px 0;
+            background: #0f172a; border: 1px solid #334155; color: white; border-radius: 4px;
+        }
+        .btn-login {
+            width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Control del Simulador -->
+    <nav class="simulator-nav">
+        <div class="brand">
+            <span class="status-dot"></span> 1Trader Cloud Simulator (Local)
+        </div>
+        <div class="controls">
+            <button onclick="navigate('landing')">🏠 Inicio (Web)</button>
+            <button onclick="showLogin()">🔐 Iniciar Sesión</button>
+            <button onclick="navigate('dashboard')">📊 Dashboard (App)</button>
+        </div>
+    </nav>
+
+    <!-- Vista 1: Landing Page (Next.js) -->
+    <div id="view-landing" class="view-container active">
+        <img src="./1trader-web-page/public/images/hero-image-01.jpg" class="mockup" alt="Landing Page Design">
+    </div>
+
+    <!-- Vista 2: Dashboard (React App) -->
+    <div id="view-dashboard" class="view-container">
+        <!-- Usamos una imagen de alta calidad del dashboard -->
+        <img src="./1trader-front/public/assets/images/dashboard-1.png" class="mockup" alt="Dashboard Interface">
+    </div>
+
+    <!-- Modal de Login Simulado -->
+    <div id="login-modal" class="login-overlay">
+        <div class="login-box">
+            <h2>Acceso Seguro</h2>
+            <p>Simulando conexión a API...</p>
+            <input type="text" class="login-input" value="admin@1trader.com" disabled>
+            <input type="password" class="login-input" value="********" disabled>
+            <button class="btn-login" onclick="performLogin()">Ingresar</button>
+        </div>
+    </div>
+
+    <script>
+        function navigate(viewName) {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+            // Mostrar la seleccionada
+            document.getElementById('view-' + viewName).classList.add('active');
+        }
+
+        function showLogin() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        function performLogin() {
+            const btn = document.querySelector('.btn-login');
+            btn.innerText = "Verificando...";
+            
+            setTimeout(() => {
+                document.getElementById('login-modal').style.display = 'none';
+                navigate('dashboard');
+                btn.innerText = "Ingresar";
+                alert("¡Autenticación Exitosa! Bienvenido al Dashboard.");
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

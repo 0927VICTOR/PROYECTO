@@ -1,0 +1,966 @@
+/* Estilos para la vista account */
+.card-account-ppal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 95%;
+  padding: 10px;
+  align-items: center;
+}
+
+.card-account {
+  min-width: 25%;
+}
+
+.center-button-card {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.button-maim {
+  background-color: rgb(236, 171, 15) !important;
+  border-color: aliceblue !important;
+}
+
+.button-maim:hover {
+  background-color: rgb(243, 179, 29);
+  border-color: aliceblue;
+}
+/* Fin estilos para la vista account */
+
+.css-y5vkr9 {
+  background: rgba(13, 18, 20, 1) !important;
+}
+
+.css-1q574bi-MuiButtonBase-root-MuiTableSortLabel-root:hover {
+  color: rgb(236, 171, 15) !important;
+}
+
+.icon-side-nav,
+.css-sukebr {
+  color: rgb(236, 171, 15) !important;
+}
+
+.css-70qvj9,
+.tag-name {
+  color: rgb(236, 171, 15) !important;
+}
+
+/* Inicio estilos para el footer */
+.background-footer {
+  background: rgba(13, 18, 20, 1) !important;
+}
+
+.about-company {
+  text-decoration: none;
+  color: rgb(236, 171, 15) !important;
+  cursor: pointer;
+}
+
+.about-contact {
+  color: rgb(236, 171, 15) !important;
+}
+
+.content-footer {
+  display: flex !important;
+  text-align: center;
+}
+/* Fin estilos para el footer */
+
+/* Estilos Datapicker */
+.MuiPickersToolbar-toolbar {
+  background: rgba(13, 18, 20, 1) !important;
+}
+
+.MuiPickersToolbar-toolbar h4 {
+  color: rgb(236, 171, 15) !important;
+}
+.MuiPickersToolbar-toolbar > button > span > h6 {
+  color: rgb(236, 171, 15) !important;
+}
+
+.MuiPickersDay-current > span {
+  color: rgb(236, 171, 15) !important;
+}
+
+.MuiButton-textPrimary {
+  background: rgba(13, 18, 20, 1) !important;
+  color: rgb(236, 171, 15) !important;
+}
+
+.MuiPickersDay-daySelected {
+  background: rgba(13, 18, 20, 1) !important;
+  color: rgb(236, 171, 15) !important;
+}
+
+.datePickerBox {
+  margin-top: 5px !important;
+}
+
+.MuiDialog-paperWidthSm {
+  max-width: 330px !important;
+}
+
+.MuiOutlinedInput-input {
+  padding: 5.5px 14px !important;
+}
+
+.datePickerW100 {
+  width: 100% !important;
+}
+/* Fin estilos Datapicker */
+
+.modal {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.w100Modal {
+  min-width: 75% !important;
+}
+
+.w50Modal {
+  min-width: 55% !important;
+}
+
+.w30Modal {
+  min-width: 30% !important;
+}
+
+.w40Modal {
+  min-width: 40% !important;
+}
+
+/* .modal-xl {
+  width: 1000px;
+} */
+
+.toastify-color-success .Toastify__toast--success {
+  background: darkblue !important;
+  color: #fff;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
+}
+
+.Toastify__toast-theme--light {
+  background: #c51515 !important;
+  background: #1e1414 !important;
+  color: #757575;
+  color: rgb(236, 171, 15) !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #07bc0c;
+  background: rgb(236, 171, 15) !important;
+}
+
+.Toastify__progress-bar {
+  background: rgb(236, 171, 15) !important;
+}
+.Toastify--animate-icon > svg {
+  fill: rgb(236, 171, 15) !important;
+}
+
+.div-main-states {
+  align-content: center;
+  margin: 0 auto;
+  text-align: center !important;
+  width: 50%;
+}
+.pendiente {
+  background: #757575 !important;
+  border-radius: 5px;
+  color: rgb(217, 233, 246);
+  margin: 0 auto !important;
+  width: 50%;
+}
+
+.pagado {
+  /* background: #edb83a; */
+  background: rgb(236, 171, 15) !important;
+  border-radius: 5px;
+  color: rgb(217, 233, 246);
+  margin: 0 auto !important;
+  width: 50% !important;
+}
+
+/* Inicio estilos Loading */
+.div-loading-children {
+  margin: 0;
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.div-loading-children-confirm {
+  margin: 0;
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.m-body-loading {
+  padding: 8% !important;
+}
+
+.m-body-loading-comfirm {
+  padding: 10% !important;
+}
+
+.loading-comfirm {
+  width: 60% !important;
+}
+/* Fin estilos Loading */
+
+/* Estilos para modal de solicitud deposito */
+.hr-deposit-form {
+  height: 2px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  background-color: black;
+}
+
+/* Tarjeta delantera */
+.contenedor-card {
+  display: flex !important;
+  margin: auto !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.tarjeta {
+  width: 70% !important;
+  max-width: 550px !important;
+  position: relative !important;
+  color: #fff;
+  transition: 0.3s ease all;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+  z-index: 2;
+}
+.tarjeta:active {
+  transform: rotateY(180deg);
+}
+
+.tarjeta > div {
+  padding: 14px !important;
+  border-radius: 15px !important;
+  min-height: 220px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 10px rgba(90, 116, 148, 0.3);
+}
+
+.delantera {
+  width: 100%;
+  background: url('../views/user/deposits/img/bg-tarjeta/bg-tarjeta-02.jpg');
+  background-size: cover;
+}
+
+.delantera .logo-marca {
+  text-align: right !important;
+  object-fit: cover;
+}
+.hidden-image {
+  visibility: hidden;
+}
+
+.delantera .logo-marca img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.delantera .logo-marca img {
+  width: 20%;
+  height: 33px;
+  object-fit: cover;
+}
+
+.delantera .chip {
+  width: 100%;
+  max-width: 50px;
+}
+
+.datos > div p {
+  margin-bottom: 0 !important;
+  font-size: 12px;
+}
+
+.datos > div label {
+  margin-bottom: 0 !important;
+  color: #7d8994;
+  font-size: 12px;
+  margin-bottom: 2px !important;
+}
+
+.delantera .grupo .numero,
+.delantera .grupo .nombre,
+.delantera .grupo .expiracion {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Tarjeta trasera */
+
+.trasera {
+  background: url('../views/user/deposits/img/bg-tarjeta/bg-tarjeta-02.jpg');
+  background-size: cover;
+  position: absolute;
+  /* con la propiedad top 0 posicionamos el segun div en la parte superior del primer div de la tarje */
+  top: 0;
+  /* Para rotar el segundo div que es el reverso de la tarjeta rotamos 180 grados el div */
+  transform: rotateY(180deg);
+  /* con la propiedad  backface-visibility: hidden lo que hacemos es ocultar el segundo div de la tarjeta */
+  backface-visibility: hidden;
+}
+
+.trasera .barra-magnetica {
+  height: 40px;
+  background: #000;
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+
+.trasera .datos {
+  margin-top: 60px;
+}
+
+.trasera .datos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trasera .datos p {
+  margin-bottom: 5px;
+}
+
+.trasera .datos .firma {
+  width: 18em;
+}
+
+.trasera .datos .firma {
+  height: 40px;
+  background: repeating-linear-gradient(skyblue 0, skyblue 5px, orange 5px, orange 10px);
+}
+
+.trasera .datos .firma p {
+  line-height: 40px;
+  font-family: 'Liu Jian Mao Cao', cursive;
+  color: #000;
+  font-size: 20px;
+  padding: 0 1px;
+  text-transform: capitalize;
+}
+
+.trasera .datos .ccv-div {
+  width: 20%;
+}
+
+.trasera .datos .ccv-div .ccv {
+  background: #fff;
+  height: 40px;
+  color: #000;
+  padding: 10px;
+}
+
+.trasera .leyenda {
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.trasera .link-banco {
+  font-size: 14px;
+  color: #fff;
+}
+
+.form-check-input:checked[type='checkbox'] {
+  background-color: rgb(236, 171, 15) !important;
+}
+
+.styleImageVisa {
+  width: 19%;
+  height: 55px;
+}
+
+.logo-marca-num-card > img {
+  width: 70%;
+  height: 38px;
+  margin-top: 7px;
+}
+.master-card {
+  width: 60% !important;
+}
+.m-r-card-logo {
+  margin-left: 7px;
+  padding-left: 4px;
+}
+/* Fin estilos para modal de solicitud deposito */
+
+/* Inicio estilos módulo perfil usuario */
+.card-user-perfil {
+  max-width: 50%;
+  height: 10%;
+}
+/* Inicio estilos módulo perfil usuario */
+
+.css-126v553 {
+  visibility: hidden;
+}
+
+/* Estilo para input tipo file */
+
+input#choose_file {
+  display: none;
+  /* visibility: hidden; */
+}
+
+input#choose_file + label {
+  background-color: rgb(236, 171, 15);
+  padding: 2px;
+  color: #fff;
+  border: 2px solid rgb(236, 171, 45);
+  border-radius: 9px;
+}
+
+input#choose_file + label:hover {
+  background-color: rgb(236, 171, 15);
+  border-color: rgb(236, 171, 15);
+  cursor: pointer;
+  box-shadow: rgb(236, 171, 45);
+}
+
+input#choose_file2 {
+  display: none;
+  /* visibility: hidden; */
+}
+
+input#choose_file2 + label {
+  background-color: rgb(236, 171, 15);
+  padding: 2px;
+  color: #fff;
+  border: 2px solid rgb(236, 171, 45);
+  border-radius: 9px;
+}
+
+input#choose_file2 + label:hover {
+  background-color: rgb(236, 171, 15);
+  border-color: rgb(236, 171, 15);
+  cursor: pointer;
+  box-shadow: rgb(236, 171, 45);
+}
+
+input#choose_file3 {
+  display: none;
+  /* visibility: hidden; */
+}
+
+input#choose_file3 + label {
+  background-color: rgb(236, 171, 15);
+  padding: 2px;
+  color: #fff;
+  border: 2px solid rgb(236, 171, 45);
+  border-radius: 9px;
+}
+
+input#choose_file3 + label:hover {
+  background-color: rgb(236, 171, 15);
+  border-color: rgb(236, 171, 15);
+  cursor: pointer;
+  box-shadow: rgb(236, 171, 45);
+}
+
+/* imagen actualizar */
+.div-img-producto {
+  display: flex;
+  width: 25%;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+.div-img-perfil {
+  margin: 0 auto;
+}
+.div-img-perfil img {
+  width: 100%;
+  padding: 5px;
+  align-items: center !important;
+}
+
+.btns-update-file {
+  display: flex;
+  justify-content: space-between;
+}
+/* Fin imagen actualizar */
+/* .img-docs-user {
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* Inicio estilos para subir documentos */
+
+.div-img-frontal {
+  display: flex;
+  width: 70%;
+  padding: 1px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 2px;
+  border-radius: 10px;
+  border-style: dashed;
+}
+
+.div-img-docs {
+  display: flex !important;
+  width: 70%;
+  padding: 2px;
+  justify-content: center !important;
+  align-items: center !important;
+  align-content: center !important;
+  margin: 0 auto;
+}
+
+.div-img-docs .no-image-style {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.center-button-upload {
+  margin-top: 5px;
+  text-align: center !important;
+}
+
+.no-image-style {
+  display: flex !important;
+  margin: 0 auto;
+}
+/* Fin estilos para subir documentos */
+
+/* Inicio estilos finalizar registro */
+.center-button-finish-register {
+  display: flex;
+  justify-content: center;
+}
+/* Fin estilos finalizar registro */
+
+/* Inicio estilos globales  */
+.inputGlobal {
+  display: block !important;
+  width: 100% !important;
+  /* min-height: calc(1.8em + 0.75rem + 2px) !important; */
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #495057 !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: 1px solid #ced4da !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  border-radius: 0.25rem !important;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+.inputGlobal::placeholder {
+  color: #495057 !important;
+}
+
+.size {
+  font-size: 12px !important;
+}
+
+/* Z-index select options indicativo formulario de registro */
+.z-index-select {
+  z-index: 10 !important;
+}
+
+.z-index-select {
+  color: #495057 !important;
+}
+
+.z-index-select select option {
+  z-index: 10 !important;
+}
+
+.MuiTableSortLabel-root:hover {
+  color: rgb(236, 171, 15) !important;
+}
+/* Fin estilos globales  */
+
+/* Admin */
+/* vista Depositos/Retiros */
+.form-check-input:checked {
+  background-color: rgb(236, 171, 15);
+  border-color: rgb(236, 171, 15);
+}
+
+.z-index-select-find-user {
+  z-index: 15 !important;
+}
+
+/* .z-index-select-find-client {
+  z-index: 15 !important;
+} */
+
+/* vista Depositos/Retiros */
+.icon-notifications .MuiBadge-badge {
+  background: rgb(15, 14, 14);
+}
+
+/* Vista Notificaciones */
+.hr-card-notification {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+/* Fin vista Notificaciones */
+.select__indicator-separator {
+  margin-top: 1px;
+}
+.select__indicator {
+  margin-top: -6px;
+}
+
+/* Vista usuarios */
+.active-on-off {
+  border-radius: 50px !important;
+  display: flex;
+  width: 10px !important;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+}
+
+.active-on {
+  background: #0e9f13 !important;
+  border-radius: 50px !important;
+  height: 9px !important;
+  margin: 0 auto;
+  margin-top: 0.1px;
+  width: 9px !important;
+  padding: 1px;
+}
+.active-off {
+  background: #555252;
+  border-radius: 50px !important;
+  height: 9px !important;
+  margin: 0 auto;
+  margin-top: 0.1px;
+  width: 9px !important;
+  padding: 1px;
+}
+/* Fin vista usuarios */
+
+/* Estilos divisas pagos */
+
+/* Martkets */
+.markets,
+.icon-up {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-up {
+  margin: auto 0;
+  border-radius: 5px;
+  height: 25px;
+  margin-right: 2px;
+  width: 17%;
+  margin-left: 3px !important;
+}
+.icon-up-card {
+  background: rgb(230, 244, 234);
+  color: rgb(19, 115, 51);
+  align-items: center;
+  height: 25px;
+  min-width: 25px;
+  border-radius: 8px;
+  margin-right: 8px;
+  display: flex;
+}
+
+.icon-up-card-payment {
+  color: rgb(19, 115, 51);
+  align-items: center;
+  height: 25px;
+  min-width: 25px;
+  margin-right: 8px;
+  display: flex;
+}
+
+.icon-down-card-payment {
+  color: rgb(194, 42, 34) !important;
+  align-items: center;
+  height: 25px;
+  min-width: 25px;
+  margin-right: 8px;
+  display: flex;
+}
+
+.icon-down-card {
+  background: rgb(226, 198, 198);
+  color: rgb(194, 42, 34);
+  align-items: center;
+  height: 25px;
+  min-width: 25px;
+  border-radius: 8px;
+  margin-right: 8px;
+  display: flex;
+}
+
+.markets-invest {
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.0178571429em;
+  font-weight: 500;
+  color: rgb(60, 64, 67);
+  padding: 2px 8px;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 12px;
+  width: min-content;
+  float: left;
+  white-space: nowrap;
+}
+
+.fontFamily {
+  color: rgb(60, 64, 67);
+}
+
+.ppal-div-markets {
+  /* display: flex; */
+  margin-top: 5px;
+  /* background: #1e1414; */
+  /* width: 100%; */
+}
+.content-inversions {
+  /* background: #07bc0c; */
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.content-inversion {
+  /* background: #ce9f55; */
+  font-size: 9px !important;
+  margin-top: 7px !important;
+  border-style: groove;
+  display: flex !important;
+  align-content: center !important;
+  border-radius: 5px;
+  height: 62px !important;
+  width: 13% !important;
+}
+
+.content-inversion-payment {
+  /* border-style: groove; */
+  display: flex !important;
+  flex-direction: column;
+  /* border-radius: 5px; */
+  height: 55px;
+  margin-right: 2px;
+  width: 40% !important;
+}
+.conatiner-1 {
+  display: flex;
+  /* background: #3827b6; */
+  align-items: center;
+  max-height: inherit !important;
+}
+
+.style-card-payment-Table {
+  display: flex !important;
+  align-items: center;
+  padding-top: 3px;
+  padding-bottom: 15px;
+}
+.markets-invest-select {
+  color: rgb(24, 90, 188);
+  background-color: rgba(28, 116, 233, 0.1) !important;
+}
+
+.moven-down {
+  color: #c51515;
+}
+
+.moven-up {
+  color: #07bc0c;
+}
+/* Fin martkets */
+/* Markets-title */
+.markets-title {
+  font-family: Roboto, Arial, sans-serif;
+  line-height: 1rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.0727272727em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgb(60, 64, 67);
+  margin-right: 8px;
+  margin-top: 3px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.custom-small {
+  width: 50px !important;
+  height: 15px !important;
+  color: #fff !important;
+  padding: 2px 8px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: rgb(236, 171, 15) !important;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24) !important;
+}
+
+.custom-small-home {
+  width: 50px !important;
+  height: 15px !important;
+  color: #fff !important;
+  padding: 2px 8px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: rgb(7, 160, 28) !important;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24) !important;
+}
+
+.custom-small-title {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 50% !important;
+  height: 15px !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: rgb(6, 172, 28) !important;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24) !important;
+}
+.custom-small-faild {
+  width: 50px !important;
+  height: 15px !important;
+  color: #fff !important;
+  padding: 2px 8px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: rgba(176, 25, 25, 0.778) !important;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24) !important;
+}
+/* Fin estilos divisas pagos */
+
+/* Fin Adimin */
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 10px solid #090909; /* Light grey */
+  border-top: 10px solid rgb(236, 171, 15); /* Black */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
+.div-erros-login {
+  display: inline-flexbox;
+  text-align: left;
+  padding-left: 2px !important;
+  background: rgb(236, 171, 15);
+  border-radius: 2px;
+}
+
+.div-erros-login > h5 {
+  color: rgba(255, 255, 255, 0.568);
+  font-size: small;
+}
+
+.color-investmentValue {
+  color: black !important;
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    --mdb-modal-width: 1140px;
+  }
+}
+
+@media (min-width: 320px) {
+  .z-index-select-find-client {
+    z-index: 20 !important;
+  }
+  .pendiente {
+    width: 100% !important;
+  }
+  .pagado {
+    width: 100% !important;
+  }
+  .xs-m-r {
+    margin-right: 2px;
+  }
+  .xs-m-r-amount {
+    margin-right: 3px;
+  }
+  .visa {
+    width: 20% !important;
+    margin-top: 16px !important;
+  }
+  .div-main-states {
+    width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .content-inversion {
+    font-size: 9px !important;
+    max-width: 100% !important;
+    display: flex !important;
+    /* justify-content: center !important; */
+    align-items: center !important;
+    margin: 0 auto;
+  }
+
+  .price-analytic {
+    width: 100% !important;
+    height: 25px !important;
+    display: flex !important;
+  }
+
+  .btn-proccess-payments {
+    display: flex !important;
+    /* width: 100% !important; */
+  }
+}
+
+.modal-xl {
+  width: 1000px;
+}
